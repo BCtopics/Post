@@ -14,6 +14,7 @@
 		6B9218261E9D4E3B007AF865 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9218251E9D4E3B007AF865 /* NetworkController.swift */; };
 		6B9218291E9D4EF2007AF865 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9218281E9D4EF2007AF865 /* Post.swift */; };
 		6B92182B1E9D545B007AF865 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B92182A1E9D545B007AF865 /* PostController.swift */; };
+		6B92182E1E9D6DD1007AF865 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B92182D1E9D6DD1007AF865 /* PostListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6B9218251E9D4E3B007AF865 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		6B9218281E9D4EF2007AF865 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6B92182A1E9D545B007AF865 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		6B92182D1E9D6DD1007AF865 /* PostListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9218141E9D4C2D007AF865 /* Main.storyboard */,
+				6B92182D1E9D6DD1007AF865 /* PostListTableViewController.swift */,
 			);
 			name = ViewControlelrs;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				6B9218291E9D4EF2007AF865 /* Post.swift in Sources */,
 				6B92182B1E9D545B007AF865 /* PostController.swift in Sources */,
 				6B9218261E9D4E3B007AF865 /* NetworkController.swift in Sources */,
+				6B92182E1E9D6DD1007AF865 /* PostListTableViewController.swift in Sources */,
 				6B9218111E9D4C2D007AF865 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
