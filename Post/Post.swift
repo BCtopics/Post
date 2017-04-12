@@ -44,3 +44,15 @@ struct Post {
         self.identifier = identifier
     }
 }
+
+extension Post {
+    
+    var jsonRepresentation: [String: Any] {
+        return [kUsername: username, KText: text, kTimeStamp: timestamp]
+    }
+    
+    var jsonData: Data? {
+        return (try? JSONSerialization.data(withJSONObject: jsonRepresentation, options: .prettyPrinted))
+    }
+    
+}
