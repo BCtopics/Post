@@ -26,6 +26,33 @@ class PostController {
         }
     }
     
+    //MARK: - CRUD
+    
+    func addNewPostWith(username: String, text: String){
+        
+        let post = Post(username: username, text: text)
+        
+       guard let putEndpoint = PostController.baseURL?.appendingPathComponent(username).appendingPathExtension("json") else { return }
+        
+        NetworkController.performRequest(for: putEndpoint, httpMethod: .put, body: post.jsonData) { (data, error) in
+            
+            guard let data = data, let responseDataString = String(data: data, encoding: .utf8) else { return }
+            
+            if error != nil {
+                print("Error: \(error)")
+            } else if responseDataString.contains("error") {
+                print("Error: \(responseDataString)")
+            } else {
+                print("Success: \nResponse: \(responseDataString)")
+            }
+            self.fetchPosts()
+            //MARK: - ^^ This right?
+        }
+        
+        
+        
+    }
+    
     //MARK: - Fetch Requests
     
     func fetchPosts(completion: (([Post]) -> Void)? = nil) {
