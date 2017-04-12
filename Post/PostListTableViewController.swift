@@ -57,6 +57,8 @@ class PostListTableViewController: UITableViewController,PostControllerDelegate 
         
         alertController.addAction(postError)
         
+        present(alertController, animated: true, completion: nil)
+        
     }
     
     let postController = PostController()
