@@ -10,6 +10,55 @@ import UIKit
 
 class PostListTableViewController: UITableViewController,PostControllerDelegate {
     
+    
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        presentNewPostAlert()
+    }
+    
+    
+    func presentNewPostAlert(){
+        var usernameTextField: UITextField?
+        var messageTextField: UITextField?
+        
+        let alertController = UIAlertController(title: "Add Message", message: "Please add a message", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            usernameTextField = textField
+            textField.placeholder = "Enter UserName" }
+        
+        //MARK: - Can I add placement text?
+        
+        alertController.addTextField { (textField) in
+            messageTextField = textField
+            textField.placeholder = "Enter Message" }
+        
+        let postAction = UIAlertAction(title: "Post", style: .default) { _ in
+            guard let username = usernameTextField?.text, !username.isEmpty else { self.presentErrorAlert(); return }
+            guard let text = messageTextField?.text, !text.isEmpty else { self.presentErrorAlert(); return }
+            self.postController.addNewPostWith(username: username, text: text)
+            self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(postAction)
+        
+        present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func presentErrorAlert(){
+        
+        let alertController = UIAlertController(title: "Error", message: "Invalid title or text please try again", preferredStyle: .alert)
+        
+        let postError = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(postError)
+        
+    }
+    
     let postController = PostController()
     
     

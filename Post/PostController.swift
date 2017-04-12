@@ -10,9 +10,9 @@ import Foundation
 
 class PostController {
     
-    static let baseURL = URL(string: "https://devmtn-post.firebaseio.com/posts/")
+     let baseURL = URL(string: "https://devmtn-post.firebaseio.com/posts/")
     
-    static let getterEndpoint = baseURL?.appendingPathExtension("json")
+    
                                                             //MARK: - ^^ What do I put here?
     
     //MARK: - Properties
@@ -32,7 +32,7 @@ class PostController {
         
         let post = Post(username: username, text: text)
         
-       guard let putEndpoint = PostController.baseURL?.appendingPathComponent(username).appendingPathExtension("json") else { return }
+       guard let putEndpoint = baseURL?.appendingPathComponent(username).appendingPathExtension("json") else { return }
         
         NetworkController.performRequest(for: putEndpoint, httpMethod: .put, body: post.jsonData) { (data, error) in
             
@@ -56,7 +56,11 @@ class PostController {
     //MARK: - Fetch Requests
     
     func fetchPosts(completion: (([Post]) -> Void)? = nil) {
-        guard let requestedURL = PostController.getterEndpoint else { fatalError("Endpoint URL Invalid/Failed") }
+        let getterEndpoint = baseURL?.appendingPathExtension("json")
+        
+        guard let requestedURL = getterEndpoint else { fatalError("Endpoint URL Invalid/Failed") }
+        
+        
         
         NetworkController.performRequest(for: requestedURL, httpMethod: .get) { (data, error) in
          
