@@ -11,10 +11,7 @@ import Foundation
 class PostController {
     
      let baseURL = URL(string: "https://devmtn-post.firebaseio.com/posts/")
-    
-    
-                                                            //MARK: - ^^ What do I put here?
-    
+
     //MARK: - Properties
     
     weak var delegate: PostControllerDelegate?
@@ -55,14 +52,20 @@ class PostController {
     
     //MARK: - Fetch Requests
     
-    func fetchPosts(completion: (([Post]) -> Void)? = nil) {
+    func fetchPosts(reset: Bool = true, completion: (([Post]) -> Void)? = nil) {
         let getterEndpoint = baseURL?.appendingPathExtension("json")
+        
+        let queryEndInterval = reset ? Date().timeIntervalSince1970 : posts.last?.queryTimestamp ?? Date().timeIntervalSince1970
         
         guard let requestedURL = getterEndpoint else { fatalError("Endpoint URL Invalid/Failed") }
         
+        let urlParameters = [
+            "orderBy": "\"timestamp\"",
+            "endAt": "\(queryEndInterval)",
+            "limitToLast": "15",
+            ]
         
-        
-        NetworkController.performRequest(for: requestedURL, httpMethod: .get) { (data, error) in
+        NetworkController.performRequest(for: requestedURL, httpMethod: .get, urlParameters: urlParameters) { (data, error) in
          
             let responseDataString = String(data: data!, encoding: .utf8)
             
@@ -77,7 +80,11 @@ class PostController {
             let sortedPosts = posts.sorted(by: { $0.0.timestamp > $0.1.timestamp })
             
             DispatchQueue.main.async {
-                self.posts = sortedPosts
+                if reset {
+                    self.posts = sortedPosts
+                } else {
+                    self.posts.append(contentsOf: sortedPosts)
+                }
                 completion?(sortedPosts)
             }
         }

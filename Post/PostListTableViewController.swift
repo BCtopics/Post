@@ -10,6 +10,34 @@ import UIKit
 
 class PostListTableViewController: UITableViewController,PostControllerDelegate {
     
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if indexPath.row+1 == postController.posts.count {
+//            
+//            postController.fetchPosts(reset: false, completion: { (newPosts) in
+//                
+//                if !newPosts.isEmpty {
+//                    
+//                    self.tableView.reloadData()
+//                }
+//            })
+//        }
+//    }
+//    
+//    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == postController.posts.count {
+            
+            postController.fetchPosts(reset: false, completion: { (newPosts) in
+                
+                if !newPosts.isEmpty {
+                    self.tableView.reloadData()
+                }
+                
+            })
+            
+        }
+    }
+    
     
     
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -26,8 +54,6 @@ class PostListTableViewController: UITableViewController,PostControllerDelegate 
         alertController.addTextField { (textField) in
             usernameTextField = textField
             textField.placeholder = "Enter UserName" }
-        
-        //MARK: - Can I add placement text?
         
         alertController.addTextField { (textField) in
             messageTextField = textField

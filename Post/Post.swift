@@ -23,6 +23,11 @@ struct Post {
     let timestamp: TimeInterval
     let identifier: UUID
     
+    var queryTimestamp: TimeInterval {
+        
+        return timestamp - 0.000001
+    }
+    
     //MARK: - Inits
     
     init(username: String, text: String, timestamp: TimeInterval = Date().timeIntervalSince1970, identifier: UUID = UUID()){
