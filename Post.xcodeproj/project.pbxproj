@@ -60,10 +60,10 @@
 		6B92180F1E9D4C2C007AF865 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				6B9218101E9D4C2D007AF865 /* AppDelegate.swift */,
 				6B92182C1E9D545F007AF865 /* ModelControllers */,
 				6B9218271E9D4EDA007AF865 /* Models */,
 				6B9218241E9D4E22007AF865 /* Networking */,
-				6B9218101E9D4C2D007AF865 /* AppDelegate.swift */,
 				6B9218231E9D4C4C007AF865 /* ViewControlelrs */,
 				6B9218221E9D4C47007AF865 /* Resources */,
 			);
@@ -354,6 +354,7 @@
 				6B9218211E9D4C2D007AF865 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
